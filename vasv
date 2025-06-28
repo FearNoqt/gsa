@@ -3,11 +3,17 @@ local plr = Players.LocalPlayer
 local playerGui = plr:WaitForChild("PlayerGui")
 
 local Gui = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local Close = Instance.new("TextButton")
+local Label = Instance.new("TextLabel")
+local Autofarm = Instance.new("TextButton")
+local toggle = Instance.new("Frame")
+local Open = Instance.new("TextButton")
+
 Gui.Name = "Gui"
 Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Gui.Parent = playerGui
 
-local Main = Instance.new("Frame")
 Main.Name = "Main"
 Main.Position = UDim2.new(0.257, 0, 0.261, 0)
 Main.Size = UDim2.new(0, 480, 0, 304)
@@ -18,7 +24,6 @@ Main.Draggable = true
 Main.Visible = false
 Main.Parent = Gui
 
-local Close = Instance.new("TextButton")
 Close.Name = "Close"
 Close.Size = UDim2.new(0, 36, 0, 28)
 Close.Position = UDim2.new(0.906, 0, 0.0296, 0)
@@ -33,7 +38,6 @@ Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Close.BorderSizePixel = 0
 Close.Parent = Main
 
-local Label = Instance.new("TextLabel")
 Label.Name = "Label"
 Label.Size = UDim2.new(0, 138, 0, 21)
 Label.Position = UDim2.new(0, 10, 0, 5)
@@ -48,29 +52,26 @@ Label.FontFace = Font.new("rbxasset://fonts/families/RomanAntique.json", Enum.Fo
 Label.BorderSizePixel = 0
 Label.Parent = Main
 
-local DanceR6 = Instance.new("TextButton")
-DanceR6.Name = "DanceR6"
-DanceR6.Size = UDim2.new(0, 90, 0, 20)
-DanceR6.Position = UDim2.new(0.0208, 0, 0.1217, 0)
-DanceR6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-DanceR6.Text = "Dance"
-DanceR6.TextColor3 = Color3.fromRGB(191, 191, 191)
-DanceR6.TextWrapped = true
-DanceR6.TextScaled = true
-DanceR6.TextSize = 14
-DanceR6.BorderSizePixel = 0
-DanceR6.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
-DanceR6.Parent = Main
+Autofarm.Name = "Autofarm"
+Autofarm.Size = UDim2.new(0, 90, 0, 20)
+Autofarm.Position = UDim2.new(0.0208, 0, 0.1217, 0)
+Autofarm.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Autofarm.Text = "Autofarm"
+Autofarm.TextColor3 = Color3.fromRGB(191, 191, 191)
+Autofarm.TextWrapped = true
+Autofarm.TextScaled = true
+Autofarm.TextSize = 14
+Autofarm.BorderSizePixel = 0
+Autofarm.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+Autofarm.Parent = Main
 
-local toggle = Instance.new("Frame")
 toggle.Name = "toggle"
 toggle.Size = UDim2.new(0, 90, 0, 2)
 toggle.Position = UDim2.new(0, 0, 1, 0)
 toggle.BackgroundColor3 = Color3.fromRGB(157, 49, 49)
 toggle.BorderSizePixel = 0
-toggle.Parent = DanceR6
+toggle.Parent = Autofarm
 
-local Open = Instance.new("TextButton")
 Open.Name = "Open"
 Open.Size = UDim2.new(0, 93, 0, 26)
 Open.Position = UDim2.new(0, 0, 0.624, 0)
@@ -84,7 +85,7 @@ Open.BorderSizePixel = 0
 Open.FontFace = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 Open.Parent = Gui
 
-
+local autofarm = false
 
 Close.MouseButton1Click:Connect(function()
 	Main.Visible = false
@@ -94,24 +95,11 @@ Open.MouseButton1Click:Connect(function()
 	Main.Visible = true
 end)
 
-local dance = false
-local currentTrack
-
-DanceR6.MouseButton1Click:Connect(function()
-	dance = not dance
-	if dance then
+Autofarm.MouseButton1Click:Connect(function()
+	autofarm = not autofarm
+	if autofarm then
 		toggle.BackgroundColor3 = Color3.fromRGB(126, 0, 0)
-		if plr.Character and plr.Character:FindFirstChild("Humanoid") then
-			local anim = Instance.new("Animation")
-			anim.AnimationId = "rbxassetid://507771019" 
-			currentTrack = plr.Character.Humanoid:LoadAnimation(anim)
-			currentTrack:Play()
-		end
 	else
-		toggle.BackgroundColor3 = Color3.fromRGB(97, 126, 35)
-		if currentTrack then
-			currentTrack:Stop()
-			currentTrack = nil
-		end
+		toggle.BackgroundColor3 = Color3.fromRGB(157, 49, 49)
 	end
 end)
