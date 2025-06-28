@@ -13,6 +13,9 @@ Main.Position = UDim2.new(0.257, 0, 0.261, 0)
 Main.Size = UDim2.new(0, 480, 0, 304)
 Main.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
 Main.BorderSizePixel = 0
+Main.Active = true
+Main.Draggable = true
+Main.Visible = false
 Main.Parent = Gui
 
 local Close = Instance.new("TextButton")
@@ -81,7 +84,7 @@ Open.BorderSizePixel = 0
 Open.FontFace = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
 Open.Parent = Gui
 
-Main.Visible = true
+
 
 Close.MouseButton1Click:Connect(function()
 	Main.Visible = false
@@ -92,12 +95,23 @@ Open.MouseButton1Click:Connect(function()
 end)
 
 local dance = false
+local currentTrack
 
 DanceR6.MouseButton1Click:Connect(function()
 	dance = not dance
 	if dance then
 		toggle.BackgroundColor3 = Color3.fromRGB(126, 0, 0)
+		if plr.Character and plr.Character:FindFirstChild("Humanoid") then
+			local anim = Instance.new("Animation")
+			anim.AnimationId = "rbxassetid://507771019" 
+			currentTrack = plr.Character.Humanoid:LoadAnimation(anim)
+			currentTrack:Play()
+		end
 	else
 		toggle.BackgroundColor3 = Color3.fromRGB(97, 126, 35)
+		if currentTrack then
+			currentTrack:Stop()
+			currentTrack = nil
+		end
 	end
 end)
