@@ -1,0 +1,103 @@
+local Players = game:GetService("Players")
+local plr = Players.LocalPlayer
+local playerGui = plr:WaitForChild("PlayerGui")
+
+local Gui = Instance.new("ScreenGui")
+Gui.Name = "Gui"
+Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Gui.Parent = playerGui
+
+local Main = Instance.new("Frame")
+Main.Name = "Main"
+Main.Position = UDim2.new(0.257, 0, 0.261, 0)
+Main.Size = UDim2.new(0, 480, 0, 304)
+Main.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+Main.BorderSizePixel = 0
+Main.Parent = Gui
+
+local Close = Instance.new("TextButton")
+Close.Name = "Close"
+Close.Size = UDim2.new(0, 36, 0, 28)
+Close.Position = UDim2.new(0.906, 0, 0.0296, 0)
+Close.BackgroundTransparency = 1
+Close.Text = "X"
+Close.TextColor3 = Color3.fromRGB(72, 72, 72)
+Close.TextWrapped = true
+Close.TextScaled = true
+Close.TextSize = 15
+Close.FontFace = Font.new("rbxasset://fonts/families/RomanAntique.json", Enum.FontWeight.Regular, Enum.FontStyle.Italic)
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BorderSizePixel = 0
+Close.Parent = Main
+
+local Label = Instance.new("TextLabel")
+Label.Name = "Label"
+Label.Size = UDim2.new(0, 138, 0, 21)
+Label.Position = UDim2.new(0, 10, 0, 5)
+Label.BackgroundTransparency = 1
+Label.Text = "By Fear"
+Label.TextColor3 = Color3.fromRGB(72, 72, 72)
+Label.TextWrapped = true
+Label.TextScaled = true
+Label.TextSize = 14
+Label.TextXAlignment = Enum.TextXAlignment.Left
+Label.FontFace = Font.new("rbxasset://fonts/families/RomanAntique.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+Label.BorderSizePixel = 0
+Label.Parent = Main
+
+local DanceR6 = Instance.new("TextButton")
+DanceR6.Name = "DanceR6"
+DanceR6.Size = UDim2.new(0, 90, 0, 20)
+DanceR6.Position = UDim2.new(0.0208, 0, 0.1217, 0)
+DanceR6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+DanceR6.Text = "Dance"
+DanceR6.TextColor3 = Color3.fromRGB(191, 191, 191)
+DanceR6.TextWrapped = true
+DanceR6.TextScaled = true
+DanceR6.TextSize = 14
+DanceR6.BorderSizePixel = 0
+DanceR6.FontFace = Font.new("rbxasset://fonts/families/Roboto.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+DanceR6.Parent = Main
+
+local toggle = Instance.new("Frame")
+toggle.Name = "toggle"
+toggle.Size = UDim2.new(0, 90, 0, 2)
+toggle.Position = UDim2.new(0, 0, 1, 0)
+toggle.BackgroundColor3 = Color3.fromRGB(157, 49, 49)
+toggle.BorderSizePixel = 0
+toggle.Parent = DanceR6
+
+local Open = Instance.new("TextButton")
+Open.Name = "Open"
+Open.Size = UDim2.new(0, 93, 0, 26)
+Open.Position = UDim2.new(0, 0, 0.624, 0)
+Open.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+Open.Text = "Open"
+Open.TextColor3 = Color3.fromRGB(72, 72, 72)
+Open.TextWrapped = true
+Open.TextScaled = true
+Open.TextSize = 14
+Open.BorderSizePixel = 0
+Open.FontFace = Font.new("rbxasset://fonts/families/TitilliumWeb.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+Open.Parent = Gui
+
+Main.Visible = true
+
+Close.MouseButton1Click:Connect(function()
+	Main.Visible = false
+end)
+
+Open.MouseButton1Click:Connect(function()
+	Main.Visible = true
+end)
+
+local dance = false
+
+DanceR6.MouseButton1Click:Connect(function()
+	dance = not dance
+	if dance then
+		toggle.BackgroundColor3 = Color3.fromRGB(126, 0, 0)
+	else
+		toggle.BackgroundColor3 = Color3.fromRGB(97, 126, 35)
+	end
+end)
